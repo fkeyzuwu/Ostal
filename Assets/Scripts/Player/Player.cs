@@ -8,13 +8,24 @@ public class Player : NetworkBehaviour
     [SerializeField] private Movement movement;
     [SerializeField] private MouseLook mouseLook;
 
-    void FixedUpdate()
+    [SyncVar] public int health = 100;
+
+    private Weapon[] weapons;
+    private Weapon currentWeapon;
+
+    [TargetRpc]
+    public void TargetDealDamage(int damage, NetworkIdentity identity)
     {
-        movement.Move();
+        identity.GetComponent<Player>().health -= damage;
+
+        if(health <= 0)
+        {
+            //player shud dieded
+        }
     }
 
-    void LateUpdate()
+    public Weapon CurrentWeapon
     {
-        mouseLook.Look();
+        get { return currentWeapon; }
     }
 }

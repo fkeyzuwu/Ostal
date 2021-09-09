@@ -11,22 +11,12 @@ public class MouseLook : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;        
+        //Cursor.lockState = CursorLockMode.Locked; //fucks up in paralale   
     }
 
-    void Update()
+    void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            if(Cursor.lockState == CursorLockMode.Locked)
-            {
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-        }
+        Look();
     }
 
     public void Look()

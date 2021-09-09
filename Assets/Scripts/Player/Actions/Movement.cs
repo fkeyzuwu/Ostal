@@ -7,6 +7,12 @@ public class Movement : MonoBehaviour
     [SerializeField] private new Rigidbody rigidbody;
     [SerializeField] private float maximumVelocity = 10f;
     [SerializeField] private float speed = 100f;
+
+    void FixedUpdate()
+    {
+        Move();
+    }
+
     public void Move()
     {
         if (rigidbody.velocity.magnitude >= maximumVelocity) return;
