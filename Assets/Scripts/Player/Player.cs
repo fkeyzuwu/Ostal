@@ -6,9 +6,15 @@ using Mirror;
 public class Player : NetworkBehaviour
 {
     [SerializeField] private Movement movement;
+    [SerializeField] private MouseLook mouseLook;
 
-    void Update()
+    void FixedUpdate()
     {
-        
+        movement.Move();
+    }
+
+    void LateUpdate()
+    {
+        mouseLook.Look();
     }
 }

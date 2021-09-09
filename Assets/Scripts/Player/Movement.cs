@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public void Move(Vector3 direction)
+    [SerializeField] private new Rigidbody rigidbody;
+    [SerializeField] private float maximumVelocity = 10f;
+    [SerializeField] private float speed = 100f;
+    public void Move()
     {
+        if (rigidbody.velocity.magnitude >= maximumVelocity) return;
 
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 direction = transform.right * x + transform.forward * z;
+        rigidbody.AddForce(speed * direction);
     }
 }

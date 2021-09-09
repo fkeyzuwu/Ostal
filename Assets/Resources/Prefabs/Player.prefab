@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 2191692003986926736}
   - component: {fileID: 129708224198131472}
   - component: {fileID: 129708224198131471}
+  - component: {fileID: 1539592477195047341}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -185,7 +186,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &5028184826137794879
 CapsuleCollider:
@@ -262,6 +263,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   movement: {fileID: 129708224198131471}
+  mouseLook: {fileID: 1539592477195047341}
 --- !u!114 &129708224198131471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,3 +276,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ada805299506d44dbae1fc546a68698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidbody: {fileID: 6859768166358383986}
+  speed: 10
+--- !u!114 &1539592477195047341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7120068613851162363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae62305b15455114ba0ac88be5826d50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 963194228}
+  mouseSensitivity: 100
+  xRotation: 0
