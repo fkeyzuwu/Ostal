@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    [SerializeField] private new Transform camera;
+    private new Transform camera;
 
     [SerializeField] private float mouseSensitivity = 100f;
     [SerializeField] private float xRotation = 0f;
 
     void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked; //fucks up in paralale   
+        camera = Camera.main.transform;
+        Cursor.lockState = CursorLockMode.Locked; //fucks up in paralale   
     }
 
     void LateUpdate()

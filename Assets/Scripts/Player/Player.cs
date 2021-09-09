@@ -12,11 +12,11 @@ public class Player : NetworkBehaviour
     [SyncVar] public int health = 100;
 
     private Weapon[] weapons;
-    private Weapon currentWeapon;
+    private Weapon currentWeapon = new LightningGun();
 
     void Start()
     {
-        CurrentWeapon = new LightningGun();
+        Camera.main.transform.SetParent(transform);
     }
 
     [Command]
@@ -26,6 +26,7 @@ public class Player : NetworkBehaviour
 
         if(health <= 0)
         {
+            Debug.Log(identity.GetComponent<Player>().health);
             Debug.Log("ded");
         }
     }

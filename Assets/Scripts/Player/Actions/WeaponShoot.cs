@@ -6,9 +6,14 @@ using Mirror;
 public class WeaponShoot : MonoBehaviour
 {
     [SerializeField] private Player player;
-    [SerializeField] private Transform eyePosition;
+    private Transform eyePosition;
 
     private float timer = 0;
+
+    void Start()
+    {
+        eyePosition = Camera.main.transform;
+    }
 
     void Update()
     {
@@ -46,7 +51,9 @@ public class WeaponShoot : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(eyePosition.position, transform.forward, out hit);
 
-        if(hit.collider.CompareTag("Player"))
+        if (hit.collider == null) return;
+
+        if (hit.collider.CompareTag("Player"))
         {
             player.CmdDealDamage(player.CurrentWeapon.Damage, hit.collider.GetComponent<NetworkIdentity>());
         }
