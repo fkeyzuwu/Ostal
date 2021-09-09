@@ -7,6 +7,9 @@ public class WeaponShoot : MonoBehaviour
 {
     [SerializeField] private Player player;
     [SerializeField] private Transform eyePosition;
+
+    private float timer = 0;
+
     void Update()
     {
         if (player.CurrentWeapon.isAutomatic)
@@ -25,14 +28,27 @@ public class WeaponShoot : MonoBehaviour
         }
     }
 
+    public void UpdateWeaponShotInterval(float shotInterval)
+    {
+        timer = shotInterval;
+    }
+
     private void Shoot()
     {
+        if(timer < player.CurrentWeapon.ShotInterval)
+        {
+            timer += Time.deltaTime;
+            return;
+        }
+
+        timer = 0f;
+
         RaycastHit hit;
         Physics.Raycast(eyePosition.position, transform.forward, out hit);
 
         if(hit.collider.CompareTag("Player"))
         {
-            player.TargetDealDamage(player.CurrentWeapon.Damage, hit.collider.GetComponent<NetworkIdentity>());
+            player.CmdDealDamage(player.CurrentWeapon.Damage, hit.collider.GetComponent<NetworkIdentity>());
         }
     }
 }
